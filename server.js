@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // set up logger
 app.use(logger('combined'))
-// Serve up static assets (usually on heroku)
+// Serve up static assets (usually on heroku)getS
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }

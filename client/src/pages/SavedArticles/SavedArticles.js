@@ -2,28 +2,35 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import Article from "../../components/Article";
+import SavedArticle from "../../components/SavedArticle";
 
 class SavedArticles extends Component {
   state = {
-    savedArticles: []
+    sArticles: []
   };
 
   componentDidMount() {
     this.getSavedArticles();
+    console.log(this.state.sArticles);
   };
 
   getSavedArticles = () => {
     //console.log("here");
     API.getArticles().then(res => 
       this.setState({
-        savedArticles: res.data
+        sArticles: [{
+          _id: "5bb05150068401528a2ddab8",
+          date: "September 29th 2018",
+          topic: "This Week’s Wedding Announcements",
+          url: "https://www.nytimes.com/2018/09/30/fashion/weddings/this-weeks-wedding-announcements.html",
+          snippet: "All of the weddings right here on one handy page for you."
+        }]
       })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
+  deleteArticle = id => {
     API.deleteArticles(id)
       .then(res => this.getSavedArticles())
       .catch(err => console.log(err));
@@ -39,17 +46,18 @@ class SavedArticles extends Component {
                 Saved Articles
                 </h2>
             </Jumbotron>
-            {this.state.savedArticles.length > 0
+            {this.state.sArticles.length 
               ? <Row>
                 <Col size="sm-12">
-                  {this.state.savedArticles.map((article) =>
-                    <Article
+                  {this.state.sArticles.map((article) =>
+                    <SavedArticle
                       key={article._id}
                       topic={article.topic}
                       _id={article._id}
                       url={article.url}
                       snippet={article.snippet}
                       date={article.date}
+                      deleteArticle={this.deleteArticle}
                     />
                   )}
                 </Col>
