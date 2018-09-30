@@ -1,11 +1,15 @@
-import React from 'react';
-
+import React from "react";
+import SaveBtn from "../../components/SaveBtn";
 
 const Article = props => (
-    <div className= "list-group">
-        <a href= {props.url} className= "bg light list-group-item list-group-item-action list-group-item-primary" target= "_blank">
-            <h4>{props.title}</h4>
-        </a>
+    <div className= "card">
+        <h5 className="card-header">{props.topic}</h5>
+        <div className="card-body">
+            <h5 className="card-title">{props.date}</h5>
+            <p className="card-text">{props.snippet}</p>
+            <a href={props.url} className="btn btn-primary" target="_blank">Read</a>
+            <SaveBtn onClick={() => this.props.saveArticle(props._id)} />
+        </div>
     </div>
 );
 
