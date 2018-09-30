@@ -20,6 +20,4 @@ export default {
   queryNYTAPI: function (queryURL) {
     return axios.get(queryURL);
   }
-
-
 };

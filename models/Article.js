@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 const articleSchema = new Schema({
-  title: {
+  topic: {
     type: String,
   },
   url: {
@@ -12,6 +12,12 @@ const articleSchema = new Schema({
   },
   date: {
       type: String,
+  },
+  _id : {
+      type: String
+  },
+  snippet: {
+    type: String
   }
 });
 

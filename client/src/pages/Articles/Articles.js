@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import SaveBtn from "../../components/SaveBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
@@ -18,21 +17,30 @@ class Articles extends Component {
         currentSearch: ""
     };
 
-    loadArticles = () => {
-        API.getArticles()
-            .then(res =>
-                this.setState({
-                    articles: res.data,
-                })
-            )
-            .catch(err => console.log(err));
-    };
+    //loadArticles = () => {
+    //    API.getArticles()
+    //        .then(res =>
+    //            this.setState({
+    //                articles: res.data,
+    //            })
+    //        )
+    //        .catch(err => console.log(err));
+    //};
 
-    saveArticle = (article) => {
+    saveArticle = (articleID) => {
+        let element = document.getElementById(articleID);   
+        let cardBodyElement = element.children[1]
+        let topic = element.children[0].innerText;
+        let date = cardBodyElement.children[0].innerText;
+        let url = cardBodyElement.children[2].getAttribute("href");
+        let snippet = cardBodyElement.children[1].innerText;
+        
         let newArticle = {
-            date: article.pub_date,
-            topic: article.headline.main,
-            url: article.web_url
+            date: date,
+            topic: topic,
+            url: url,
+            _id: articleID,
+            snippet: snippet
         }
 
         API.saveArticles(newArticle).then(articles => {
