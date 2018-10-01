@@ -85,11 +85,11 @@ class Articles extends Component {
         }
 
         if (startYear) {
-            queryURL += `&begin_date=${startYear}0101`
+            queryURL += `&begin_date=${startYear}`
         }
 
         if (endYear) {
-            queryURL += `&end_date=${endYear}1231`
+            queryURL += `&end_date=${endYear}`
         }
 
         queryURL += APIkey;

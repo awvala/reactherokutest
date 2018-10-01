@@ -2,5 +2,5 @@
 
 module.exports = {
     // add loose files
-    Article: require("./Article")
+    Article: require("./article")
   };

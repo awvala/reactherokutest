@@ -16,19 +16,14 @@ class SavedArticles extends Component {
 
   getSavedArticles = () => {
     //console.log("here");
-    API.getArticles().then(res => 
+    API.getArticles().then(res => {
+      console.log(res);
       this.setState({
-        sArticles: [{
-          _id: "5bb05150068401528a2ddab8",
-          date: "September 29th 2018",
-          topic: "This Week’s Wedding Announcements",
-          url: "https://www.nytimes.com/2018/09/30/fashion/weddings/this-weeks-wedding-announcements.html",
-          snippet: "All of the weddings right here on one handy page for you."
-        }]
+        sArticles: 
+          res.data
       })
-      )
-      .catch(err => console.log(err));
-  };
+    }).catch(err => console.log(err));
+};
 
   deleteArticle = id => {
     API.deleteArticles(id)
